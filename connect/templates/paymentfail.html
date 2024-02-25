@@ -1,0 +1,148 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8d7da;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .failure-card {
+            border: 1px solid #dc3545;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .failure-icon {
+            color: #dc3545;
+            font-size: 3rem;
+        }
+
+        .failure-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .try-again {
+            margin-top: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="{% static 'images/app_crop_logo.png' %}"  alt="Logo">
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="failure-card text-center">
+                <i class="bi bi-exclamation-triangle failure-icon"></i>
+                <h2 class="failure-message">Payment Failed</h2>
+                <p>There was an issue processing your payment.</p>
+                <p>Please try again or contact support.</p>
+                <div class="try-again">
+                    <a href="/checkout" class="btn btn-danger">Try Again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8d7da;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .failure-card {
+            border: 1px solid #dc3545;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .failure-icon {
+            color: #dc3545;
+            font-size: 3rem;
+        }
+
+        .failure-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .try-again {
+            margin-top: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="{% static 'images/app_crop_logo.png' %}" alt="Logo">
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="failure-card text-center">
+                <i class="bi bi-exclamation-triangle failure-icon"></i>
+                <h2 class="failure-message">Payment Failed</h2>
+                <p>There was an issue processing your payment.</p>
+                <p>Please try again or contact support.</p>
+                <div class="try-again">
+                    <a href="/checkout" class="btn btn-danger">Try Again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

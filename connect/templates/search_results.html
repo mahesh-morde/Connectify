@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block 'main' %}
+
+<head>
+    <style>
+        /* === removing default button style ===*/
+.button {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(4, 0, 255, 0.965);
+  --animation-color: #58176f;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+  font-size: 17px
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+    </style>
+</head>
+<div class="row p-3">
+    <div class="col-md-3 bg-light" style="min-height: 55vh; max-height: auto;">
+        <h5>
+            Filter by Category
+        </h5>
+        <hr>
+        <a href="/home"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Contacts&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Contacts&nbsp;</span>
+        </button></a> <hr>
+        <a href="/fav"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Favourits&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Favourits&nbsp;</span>
+        </button></a> <hr>
+        <a href="/1"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Friends&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Friends&nbsp;</span>
+        </button></a> <hr>
+        <a href="/2"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Family&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Family&nbsp;</span>
+        </button></a> <hr>
+        <a href="/3"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Colleagues&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Colleagues&nbsp;</span>
+        </button></a> <hr>
+    </div>
+
+    <div class="col-md-9 p-2">
+        <h2 style="text-align: center;">Search Results</h2> <br>
+
+            <p style="text-align: center;">Showing results for :  <strong style="color: rgb(255, 5, 5);">{{searchfield}}</strong></p> <br>
+
+            
+            
+        <table class="table">
+            <thead>
+                {% if contact_results %}
+                <tr>
+                    <th>Favorite</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    
+                    <th>Edit / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for c in contact_results %}
+                    <tr>
+                        <td>
+                            {% if c.addtoFva %}
+                                <button class="btn btn-light toggle-favorite" data-contact-id="{{ c.id }}">❤️</button>
+                            {% else %}
+                                <button class="btn btn-light toggle-favorite" data-contact-id="{{ c.id }}">⭐️</button>
+                            {% endif %}
+                            
+                         
+                        </td>
+                        <td>{{ c.name }}</td>
+                        <td>{{ c.phone_number }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>{{ c.get_category_display }}</td>
+                        <td>{{ c.location }}</td>
+                        
+                         <td>
+                            <a href="../edit_contact/{{c.id}}" ><button class="btn btn-primary"><i class="fa-solid fa-user-pen"></i></button></a> |
+                            <a href="../delete_contact/{{c.id}}" ><button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                <p style="color: red; text-align: center;"><b>No results found.</b></p>
+                {% endif %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Function to get CSRF cookie value
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Search for CSRF token
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    $(document).ready(function () {
+        $('.toggle-favorite').click(function () {
+            var contactId = $(this).data('contact-id');
+            var button = $(this);
+
+            // Get CSRF token
+            var csrftoken = getCookie('csrftoken');
+
+            // Assuming you have an API endpoint to update the favorite status
+            $.ajax({
+                type: 'POST',
+                url: '/toggle_favorite/' + contactId + '/',
+                data: {csrfmiddlewaretoken: csrftoken},  // Include CSRF token in data
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        if (data.favorite) {
+                            button.html('❤️'); // Change to heart emoji
+                        } else {
+                            button.html('⭐️'); // Change back to star emoji
+                        }
+                    } else {
+                        // Handle error
+                        console.error(data.error);
+                    }
+                },
+                error: function (xhr, errmsg, err) {
+                    // Handle error
+                    console.error(err);
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock 'main' %}

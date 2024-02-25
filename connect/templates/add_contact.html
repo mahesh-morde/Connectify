@@ -1,0 +1,154 @@
+    {% include "header.html" %}
+
+    <head>
+    
+        <style>
+            /* === removing default button style ===*/
+    .button {
+      margin: 0;
+      height: auto;
+      background: transparent;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* button styling */
+    .button {
+      --border-right: 6px;
+      --text-stroke-color: rgba(4, 0, 255, 0.965);
+      --animation-color: #58176f;
+      --fs-size: 2em;
+      letter-spacing: 3px;
+      text-decoration: none;
+      font-size: var(--fs-size);
+      font-family: "Arial";
+      position: relative;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--text-stroke-color);
+      font-size: 17px
+    }
+    /* this is the text, when you hover on button */
+    .hover-text {
+      position: absolute;
+      box-sizing: border-box;
+      content: attr(data-text);
+      color: var(--animation-color);
+      width: 0%;
+      inset: 0;
+      border-right: var(--border-right) solid var(--animation-color);
+      overflow: hidden;
+      transition: 0.5s;
+      -webkit-text-stroke: 1px var(--animation-color);
+    }
+    /* hover */
+    .button:hover .hover-text {
+      width: 100%;
+      filter: drop-shadow(0 0 23px var(--animation-color))
+    }
+        </style>
+    </head>
+
+<div class="row p-3">
+    <div class="col-md-3 bg-light" style="min-height: 55vh; max-height: auto;">
+        <h5>
+            Filter by Category
+        </h5>
+        <hr>
+        <a href="/home"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Contacts&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Contacts&nbsp;</span>
+        </button></a> <hr>
+        <a href="/fav"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Favourits&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Favourits&nbsp;</span>
+        </button></a> <hr>
+        <a href="/1"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Friends&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Friends&nbsp;</span>
+        </button></a> <hr>
+        <a href="/2"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Family&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Family&nbsp;</span>
+        </button></a> <hr>
+        <a href="/3"><button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Colleagues&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Colleagues&nbsp;</span>
+        </button></a> <hr>
+    </div>
+
+    <div class="row col-md-4 justify-content-center p-10" style="margin-left: 20%;">
+        <div>
+            <div style="margin-bottom: 5%;">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Add Contact</h3>
+                </div>
+                <div>
+                    <form method="POST" action="{% url 'add_contact' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+    
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name:</label>
+                            <input type="text" class="form-control" name="Name" required>
+                            <div class="invalid-feedback">Please enter a name.</div>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="Number" class="form-label">Phone Number:</label>
+                            <input type="text" class="form-control" name="Number" required>
+                            <div class="invalid-feedback">Please enter a phone number.</div>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" name="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category:</label>
+                            <select class="form-select" name="category" required>
+                                <option value="" disabled selected>Select a category</option>
+                                <option value="1">Friends</option>
+                                <option value="2">Family</option>
+                                <option value="3">Office</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a category.</div>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="Location" class="form-label">Location:</label>
+                            <input type="text" class="form-control" name="Location" required>
+                            <div class="invalid-feedback">Please enter a location.</div>
+                        </div>
+    
+                        <button type="submit" class="btn btn-primary">Save Contact</button>
+                        <a href="/home" class="btn btn-secondary">Home</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if error == "yes" %}
+        <script>
+            alert("Something went wrong, Please try again");
+            window.location = '{% url "add_contact" %}';
+        </script>
+    {% endif %}
+    
+    {% if error == "no" %}
+        <script>
+            alert("Contact Saved successfully");
+        </script>
+    {% endif %}
+
+    {% if error == "yes" %}
+        <script>
+            alert("Something went wrong, Please try again");
+            window.location = '{% url "add_contact" %}';
+        </script>
+    {% endif %}
+    {% include "footer.html" %}
+</div>

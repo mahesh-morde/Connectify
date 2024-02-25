@@ -1,0 +1,87 @@
+{% load static %}
+
+<head>
+    <style>
+        /* this button is inspired from this -- https://www.newline.co/pricing */
+button {
+  --width: 150px;
+  --timing: 2s;
+  border: 0;
+  width: var(--width);
+  padding-block: 1em;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1em;
+  background: rgb(64, 192, 87);
+  transition: all 0.2s;
+  border-radius: 13px;
+}
+
+button:hover {
+  background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%);
+  animation: var(--timing) linear dance6123 infinite;
+  transform: scale(1.1) translateY(-1px);
+}
+
+@keyframes dance6123 {
+  to {
+    background-position: var(--width);
+  }
+}
+
+
+    </style>
+</head>
+
+<a href="/home">
+    <button>
+        Join now 🤝
+    </button>
+</a>
+
+    <div class="about-container">
+        
+
+        <img src="{% static 'images/app_logo.png' %}" alt="App Logo" class="app-logo">
+
+        <p style="color: #555; font-size: 1.2em;">
+            Welcome to <span style="color: #e74c3c;">Connectify</span> – your go-to solution for 
+            <span style="font-weight: bold;">Connectify is a comprehensive contact management application designed to streamline the process of saving and accessing contacts remotely. The primary goal of Connectify is to provide users with a centralized and efficient solution for managing their contacts from any location.</span>
+            Our mission is to <span style="font-style: italic;">Connectify's primary goal is to simplify contact management by providing a user-friendly platform for saving and accessing contacts remotely. We aim to enhance connectivity by offering an innovative solution that prioritizes ease of use and efficiency.</span>
+        </p>
+
+        <h3 style="color: #3498db; font-size: 1.8em;">What Sets Us Apart?</h3>
+        <p style="color: #555; font-size: 1.2em;">
+            The app aims to simplify the process of saving and accessing contact information, offering a user-friendly and intuitive platform for individuals and businesses alike. By leveraging innovative cloud technology, Connectify ensures that users can access their contacts from any location and device, promoting convenience and flexibility in contact management. The app's primary purpose is to enhance organization, collaboration, and accessibility of contact information, catering to the dynamic needs of users in today's interconnected world.
+        </p>
+
+        <h3 style="color: #27ae60; font-size: 1.8em;">Our Team</h3>
+        <img src="https://www.santander.com/content/dam/santander-com/es/stories/cabecera/2023/-diversidad-e-inclusion/im-storie-team-building-desktop.jpg" alt="Team Photo" class="team-photo">
+        <p style="color: #555; font-size: 1.2em;">
+            Meet the talented individuals behind <span style="font-weight: bold;">Connectify,</span> 
+            Our team is passionate about <span style="font-style: italic;">the innovative contact management app designed to streamline your connectivity. Our team is passionate about revolutionizing the way users manage their contacts, and we work tirelessly to deliver a top-notch experience for our users.
+        </p>
+
+        <!-- Add more sections as needed -->
+
+        <style>
+            /* Add your custom CSS styles here */
+            .about-container {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .app-logo {
+                width: 200px;
+                margin: 20px 0;
+            }
+
+            .team-photo {
+                width: 300px;
+                margin: 20px 0;
+                border-radius: 50%;
+            }
+        </style>
+    </div>
+

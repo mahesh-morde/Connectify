@@ -1,0 +1,310 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Source+Code+Pro:wght@300&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.sidebar{
+    /* background-color: rgb(145, 142, 142); */
+    /* width: 12vw; */
+    margin: 20px 0;
+    height: 100vh;
+    font-family: 'Fira Sans', sans-serif;
+    transition: transform 0.3s ease-in;
+    z-index: 3;
+}
+
+.sidebar nav{
+    padding: 30px;
+}
+
+.sidebar nav li{
+    list-style: none;
+    /* font-size: 20px; */
+    padding: 30px 0;
+}
+
+.sidebar nav li a{
+    text-decoration: none;
+   font-size: 20px;
+   /* padding: 25px 0; */
+   color: white;
+}
+
+.main{
+    width: 87vw;
+    margin-left: 7%;
+}
+
+.main::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  background-size: cover;
+  filter: blur(2px);
+}
+
+.infoContainer{
+    height: 60vh;
+    width: 62vw;
+    margin: 75px 40px;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+.devInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.hello{
+    font-size: 65px;
+    
+}
+
+.name{
+    font-size: 60px;
+    font-weight: bold;
+    font-family: 'Fira Sans', sans-serif;
+    opacity: 0;
+}
+
+.about{
+    font-size: 29px;
+    opacity: 0;
+    color: rgb(241, 0, 0);
+    font-weight: bold;
+    text-shadow: 10px color(srgb red green blue);
+}
+.moreAbout{
+    font-size: 18px;
+    margin-top: 20px;
+    font-family: 'Fira Sans', sans-serif;
+    opacity: 0;
+    
+}
+
+.buttons{
+    margin-top: 30px;
+    opacity: 0;
+}
+
+.btn{
+    padding: 3px 8px;
+    border-radius: 15px;
+    color: white;
+    background-color: rgb(238, 153, 7);
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.btn-sm{
+    font-size: 13px;
+    padding:7px 19px;
+    margin: 8px 0;
+}
+
+.btn:hover{
+    background-color: white;
+    color: black;
+}
+
+.devPic img{
+    height: 60vh;
+}
+
+.container{
+    display: flex;
+}
+
+
+.sidebarGo{
+    transform: translate(-443px, 0px);
+    position: absolute;
+    
+}
+
+.hamburger{
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+/* Animation */
+.slideLeft{
+    animation: slide-left 1.5s linear forwards;
+}
+
+@keyframes slide-left{
+    0%{
+        transform: translate(100px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translate(0px);
+        opacity: 1;
+    }
+
+}
+
+
+
+/* home page delay */
+.name.slideLeft{
+    animation-delay: 0.5s;
+}
+
+.about.slideLeft{
+    animation-delay: 1s;
+}
+
+.moreAbout.slideLeft{
+    animation-delay: 1.5s;
+}
+
+.buttons.slideLeft{
+    animation-delay: 2s;
+}
+
+
+
+/* .cross{
+margin-left: 110px;
+} */
+
+.hello {
+    display: flex;
+  }
+
+  .hello > div {
+    flex: 1;
+    
+    margin: 10px; /* Optional: Add some margin for spacing */
+  }
+
+  .hello > div:first-child {
+    width: auto;
+  }
+
+  /* Additional styling for h2 */
+  .hello h2 {
+    margin: 0; /* Remove default margin for h2 */
+    font-size: larger;
+    padding-top: 9%;
+    font-weight:bold;
+  }
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body {
+    background-image: url('your_image_url.jpg');
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif;
+    color: white; /* Adjust text color for better visibility */
+}
+
+</style>
+	
+</head>
+<body style="background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/c4cd2469553149.5b85760ee5e4b.gif'); background-size: cover;">
+
+<!-- <video autoplay muted loop id="myVideo">
+  <source src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1239690/f032ec4916fad9f6f64ecb7a9f083e835f65e362.mp4" type="video/mp4">
+</video> -->
+
+<div class="container">
+    <div class="sidebar sidebarGo">
+
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="https://mahesh-morde.github.io/Resume/" target="_blank">My Intro</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="about">Blog</a></li>
+          <li><a href="https://sites.google.com/view/mahesh-morde" target="_blank">Portfolio</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- main content -->
+    <div class="main">
+      <div class="hamburger">
+        <img class="ham" src="https://cdn-icons-png.flaticon.com/512/9679/9679166.png" alt="hamb" width="45px">
+        <img class="cross" src="https://cdn-icons-png.flaticon.com/512/5392/5392890.png" alt="cross" width="45px">
+      </div>
+      <div class="infoContainer">
+        <div class="devInfo">
+          <div class="hello slideLeft raw">
+            <img src="{% static 'images/app_crop_logo.png' %}" alt="img" style="height: 80%; width: 40%;">
+          </div>
+          <div class="name slideLeft"></div>
+          <div class="about slideLeft">Empowering Connectivity, Simplifying Contacts. 📇</div>
+          <div class="moreAbout slideLeft">Welcome to <span style="color: #ffee00;">Connectify</span>, Connectify is a comprehensive contact management application designed to streamline the process of saving and accessing contacts remotely. The primary goal of Connectify is to provide users with a centralized and efficient solution for managing their contacts from any location.</div>
+          <div class="buttons slideLeft">
+            <a href="/login"><Button class="btn">Login</Button></a>
+            <a href="/reg"><Button class="btn">Register</Button></a>
+            <a href="https://mahesh-morde.github.io/Resume/" target="_blank"><button class="btn">About Developer</button></a>
+          </div>
+        </div>
+        <div class="devPic">
+          <!-- <img src="/images/devPick.png" alt="Sameer"> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+	    document.querySelector('.cross').style.display="none";
+document.querySelector('.hamburger').addEventListener("click", ()=>{
+    document.querySelector('.sidebar').classList.toggle('sidebarGo');
+
+    if(document.querySelector('.sidebar').classList.contains('sidebarGo')){
+        document.querySelector('.ham').style.display="inline";
+        document.querySelector('.cross').style.display="none";
+    }
+    else{
+        document.querySelector('.cross').style.display="inline";
+        document.querySelector('.ham').style.display="none";
+    }
+})
+	</script>
+    
+</body>
+</html>
